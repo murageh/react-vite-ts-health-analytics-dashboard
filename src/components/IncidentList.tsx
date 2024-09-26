@@ -1,10 +1,12 @@
 // src/components/IncidentList.tsx
-import {gql, useQuery} from '@apollo/client';
-import {Incident} from '../generated/graphql';
-import React from "react"; // Assuming you're using code generation
+import {useQuery} from '@apollo/client';
 
-const INCIDENTS_QUERY = gql`
-    query {
+import React from "react";
+import {gql} from "../__generated__";
+import {Incident} from "../__generated__/graphql"; // Assuming you're using code generation
+
+const INCIDENTS_QUERY = gql(`
+    query Incidents {
         incidents {
             id
             patientName
@@ -12,7 +14,7 @@ const INCIDENTS_QUERY = gql`
             date
         }
     }
-`;
+`);
 
 const IncidentList: React.FC = () => {
     const {loading, error, data} = useQuery(INCIDENTS_QUERY);
@@ -24,7 +26,7 @@ const IncidentList: React.FC = () => {
         <div className="mt-6">
             <h2 className="text-xl font-semibold mb-4">Reported Incidents</h2>
             <ul>
-                {data.incidents.map((incident: Incident) => (
+                {data?.incidents.map((incident: Incident) => (
                     <li key={incident.id} className="flex items-center justify-between p-3 border-b border-gray-200">
                         <div>
                             <p className="font-medium">{incident.patientName}</p>
