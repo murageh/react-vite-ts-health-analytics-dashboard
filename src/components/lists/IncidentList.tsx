@@ -2,8 +2,8 @@
 import {useQuery} from '@apollo/client';
 
 import React from "react";
-import {gql} from "../__generated__";
-import {Incident} from "../__generated__/graphql"; // Assuming you're using code generation
+import {gql} from "../../__generated__";
+import {Incident} from "../../__generated__/graphql.ts"; // Assuming you're using code generation
 
 const INCIDENTS_QUERY = gql(`
     query Incidents {

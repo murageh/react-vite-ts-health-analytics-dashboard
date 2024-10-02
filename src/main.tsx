@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client'
 
 const client = new ApolloClient({
-        uri: 'http://localhost:4000/', // Replace with your GraphQL API URL
+    uri: 'http://localhost:4000/', // You can replace this with your GraphQL API URL
         cache: new InMemoryCache()
     });
 
