@@ -1,4 +1,95 @@
-# React + TypeScript + Vite
+# Access Afya Health Analytics Dashboard
+
+This project is a React-based health analytics dashboard designed for Access Afya, a healthcare provider focused on
+delivering quality, affordable primary care in urbanizing areas. The dashboard provides insights into key operational
+metrics, incidents, staff performance, and trends over time.
+
+## Features
+
+* **Key Metrics:** Displays important operational metrics at a glance.
+* **Incident List:** Shows a list of reported incidents with patient details and incident type.
+* **Line Charts:** Visualizes trends for footfall, patient satisfaction, and revenue.
+* **Staff Performance Table:** Presents a table of staff members with their efficiency, NPS, and reported issues.
+* **Light/Dark Mode Toggle:** Allows users to switch between light and dark themes.
+* **Filtering and Sorting:** Enables users to filter and sort data in the incident list and staff table.
+* **Responsive Design:** Adapts to various screen sizes for optimal viewing.
+
+## Technologies Used
+
+* **Frontend:**
+    * React
+    * TypeScript
+    * Vite
+    * Tailwind CSS
+    * Apollo Client
+    * Chart.js
+* **Backend:**
+    * Node.js
+    * TypeScript
+    * GraphQL
+    * TypeORM
+    * SQLite/PostgreSQL
+
+## Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/murageh/react-vite-ts-health-analytics-dashboard
+    cd react-vite-ts-health-analytics-dashboard
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Start the development server:
+    ```bash
+    npm run dev
+    ```
+4. (Optional) Seed the database:
+    ```bash
+    npm run seed // Make sure to have the backend running and properly configured before running this command.
+    ```
+5. Open [http://localhost:3000](http://localhost:5173) in your browser.
+
+## Project Structure
+
+- `src`: Contains the frontend React code.
+    - `components`: Holds reusable React components.
+    - `generated`: Contains the generated GraphQL types.
+    - `assets`: Contains images and other static assets.
+    - `layouts`: Contains layout components.
+    - `pages`: Contains the main application pages.
+    - `App.tsx`: The main application component.
+    - `main.tsx`: The entry point for the React application.
+    - `react-app-env.d.ts`: TypeScript declaration file for React.
+    - `index.css`: Global CSS styles.
+    - `App.css`: Component-specific CSS styles.
+- `vite.config.ts`: Vite configuration file.
+- `tsconfig.json`: TypeScript configuration file.
+- `eslint.config.js`: ESLint configuration file.
+- `codegen.ts`: Code generation script.
+- `tailwind.config.js`: Tailwind CSS configuration file.
+- `package.json`: Project package file.
+
+## Code Generation
+
+This project uses GraphQL Code Generator to generate TypeScript types from the GraphQL schema. To regenerate the types:
+
+```bash
+  npx run generate
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+## License
+
+This project is licensed under the MIT License.
+
+# TLDR; Original (React + Vite + TS) README.md
+
+## The original README.md file is below.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
