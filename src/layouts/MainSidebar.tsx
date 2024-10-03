@@ -32,11 +32,11 @@ const MainSidebar = () => {
             <button
                 onClick={() => setSelected(link)}
                 title={label}
-                className={`w-12 h-12 flex items-center justify-center rounded-md text-${selected === link ? 'blue-900' : 'slate-900'} bg-transparent hover:bg-blue-700`}>
+                className={`w-12 h-12 flex items-center justify-center rounded-md text-${selected === link ? 'primary' : 'slate-900'} bg-transparent hover:bg-blue-700`}>
                 {
                     React.cloneElement(children as React.ReactElement, {
                         size: 32,
-                        className: `text-${selected === link ? 'blue-900' : 'slate-900'} font-normal`
+                        className: `text-${selected === link ? 'primary' : 'slate-900'} font-normal`
                     })
                 }
             </button>

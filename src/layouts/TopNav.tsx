@@ -2,7 +2,6 @@
 
 const TopNav = () => {
     const NavButton = ({text, icon}: { text: string, icon: JSX.Element }) => {
-        // white, transparent button, rounded corners, with an icon on the right. All centered vertically. Minimal shadow
         return (
             <button
                 className="flex items-center px-4 py-2 bg-white text-gray-600 rounded-md border border-gray-200 hover:bg-gray-100 transition">
@@ -42,12 +41,12 @@ const TopNav = () => {
                 {/* Horizontal meter showing patients assessed. Text below it saying "XX / XXX patients seen" */}
                 <div className="flex flex-col items-start justify-center space-y-1 flex-grow">
                     <div className="flex justify-start bg-gray-200 w-10/12 h-2 rounded-full">
-                        <div className="bg-purple-500 h-2 w-5/12 rounded-full"></div>
+                        <div className="bg-primary h-2 w-5/12 rounded-full"></div>
                     </div>
                     <p className="text-xs text-gray-500">20 / 100 patients seen</p>
                 </div>
 
-                <div>
+                <div className={"cursor-pointer"}>
                     <p className="text-sm font-semibold">Sandra Mwai</p>
                     <p className="text-xs text-gray-500">sandramwai@caveasy.com</p>
                 </div>

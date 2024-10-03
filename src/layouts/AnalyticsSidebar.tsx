@@ -3,7 +3,7 @@ import Button from "../components/Button.tsx";
 
 const AnalyticsSidebar = () => {
     const areas = ['Karanda', 'Mukuru X-ray Ruben', 'Baba Dogo', 'Kiserian', 'Mukuru Kayaba'];
-    const [selected, setSelected] = React.useState<string | null>(null);
+    const [selected, setSelected] = React.useState<string | null>("Karanda");
 
     return (
         <div className="w-full h-screen bg-white text-slate-900 text-left p-4 shadow-sm rounded-md">

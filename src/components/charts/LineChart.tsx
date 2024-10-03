@@ -7,9 +7,7 @@ ChartJS.register(
     LinearScale,
     PointElement,
     LineElement,
-    // Title,
     Tooltip,
-    // Legend
 );
 
 interface LineChartProps {

@@ -82,27 +82,27 @@ const StaffTable: React.FC = () => {
                 <thead className="bg-gray-50">
                 <tr>
                     <th scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
                         No.
                     </th>
                     <th scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
                         Staff Name
                     </th>
                     <th scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
                         Efficiency Delta (Δ)
                     </th>
                     <th scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
                         NPS Delta (Δ)
                     </th>
                     <th scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
                         Efficiency
                     </th>
                     <th scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        className="px-6 py-3 text-left text-xs font-semibold text-gray-900 uppercase tracking-wider">
                         Reported Issues
                     </th>
                 </tr>
@@ -110,14 +110,14 @@ const StaffTable: React.FC = () => {
                 <tbody className="bg-white divide-y divide-gray-200">
                 {data.staffMembers.map((staffMember: StaffMember) => {
                     return (
-                        <tr key={staffMember.id}>
+                        <tr key={staffMember.id} className={"cursor-pointer"}>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">{staffMember.id}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center">
                                     <div className="ml-4">
-                                        <div className="text-sm font-medium text-blue-900">{staffMember.name}</div>
+                                        <div className="text-sm font-medium text-primary">{staffMember.name}</div>
                                     </div>
                                 </div>
                             </td>

@@ -1,5 +1,5 @@
 import MainSidebar from './MainSidebar.tsx';
-import TopNav from '../components/TopNav';
+import TopNav from './TopNav.tsx';
 import React from "react";
 
 const DashboardLayout = ({children}: { children: React.ReactNode }) => {
