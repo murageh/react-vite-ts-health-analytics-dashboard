@@ -1,9 +1,13 @@
 // import ThemeToggle from "./theme/ThemeToggle.tsx";
 
+import {TbPlus} from "react-icons/tb";
+import {toast} from "react-toastify";
+
 const TopNav = () => {
-    const NavButton = ({text, icon}: { text: string, icon: JSX.Element }) => {
+    const NavButton = ({text, icon, onClick}: { text: string, icon: JSX.Element, onClick: () => void }) => {
         return (
             <button
+                onClick={onClick}
                 className="flex items-center px-4 py-2 bg-white text-gray-600 rounded-md border border-gray-200 hover:bg-gray-100 transition">
                 {text}
                 <span className="ml-2">{icon}</span>
@@ -18,21 +22,12 @@ const TopNav = () => {
                 <NavButton
                     text="Add Assessment"
                     icon={
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                            />
-                        </svg>
+                        <TbPlus size={24} className={"font-semibold"}/>
                     }
+                    onClick={() => {
+                        toast.success("Adding an assessment");
+                        // TODO: Add assessment
+                    }}
                 />
             </div>
 

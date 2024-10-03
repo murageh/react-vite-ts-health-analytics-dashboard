@@ -1,5 +1,6 @@
 import Button from "./Button.tsx";
 import React from "react";
+import {toast} from "react-toastify";
 
 const BasicFilters = () => {
     const filters = ["Wrong Prescription", "Delay in Lab", "Opened Late", "Bad Reception", "Late Check In", "Careless Notes"];
@@ -18,7 +19,11 @@ const BasicFilters = () => {
                         text={filter}
                         subText={`${Math.floor(Math.random() * 100)} Incidents`}
                         selected={selected === filter}
-                        onClick={() => setSelected(filter)}
+                        onClick={() => {
+                            toast.success(`Filtering by ${filter}`);
+                            // TODO: Do actual filtering
+                            setSelected(filter);
+                        }}
                     />
                 ))}
             </div>

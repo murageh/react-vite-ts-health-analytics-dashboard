@@ -1,5 +1,6 @@
 import React from "react";
 import {TbChartCandleFilled} from "react-icons/tb";
+import {toast} from "react-toastify";
 
 // has a horizontal list of filters - Day, Week, Month, Year. All these, when selected, have a blue border. Slightly rounded corners.
 // On the right after these filters, is a node denoting the selected period e.g., <Filter icon> 10Dec 2021 - 10Jan 2022
@@ -19,7 +20,11 @@ const DateFilters = () => {
                         <li
                             key={filter}
                             className={`text-sm font-normal text-left flex items-center justify-start gap-x-2 px-4 py-4 rounded-md border border-gray-200 ${selected === filter ? 'text-primary border-3 border-primary' : 'hover:bg-gray-100'}`}
-                            onClick={() => setSelected(filter)}
+                            onClick={() => {
+                                toast.success(`Filtering by ${filter}`);
+                                // TODO: Do actual filtering
+                                setSelected(filter);
+                            }}
                         >
                             <span>{filter}</span>
                         </li>
