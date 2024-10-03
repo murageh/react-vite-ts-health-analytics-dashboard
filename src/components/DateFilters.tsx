@@ -16,6 +16,7 @@ const DateFilters = () => {
                 <div className="flex items-center gap-2">
                     {filters.map((filter) => (
                         <li
+                            key={filter}
                             className={`text-sm font-normal text-left flex items-center justify-start gap-x-2 px-4 py-4 rounded-md border border-gray-200 ${selected === filter ? 'text-blue-700 border-blue-700' : 'hover:bg-gray-100'}`}
                             onClick={() => setSelected(filter)}
                         >

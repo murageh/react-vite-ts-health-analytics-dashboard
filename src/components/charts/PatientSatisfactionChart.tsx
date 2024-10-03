@@ -15,8 +15,7 @@ const PatientSatisfactionChart: React.FC = () => {
     if (error) return <p>Error: {error.message}</p>;
 
     // Assuming you have labels for the patient satisfaction data
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
-
+    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return (
         <div className="mt-6">
             <LineChart title="Patient Satisfaction" labels={labels} data={data.patientSatisfactionData}/>

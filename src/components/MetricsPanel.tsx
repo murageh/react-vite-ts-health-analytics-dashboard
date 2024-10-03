@@ -1,55 +1,45 @@
 import FootFallChart from "./charts/FootFallChart.tsx";
 import PatientSatisfactionChart from "./charts/PatientSatisfactionChart.tsx";
 import RevenueChart from "./charts/RevenueChart.tsx";
+import React from "react";
 
 const MetricsPanel = () => {
-    const footFallData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-            {
-                label: 'Foot Fall',
-                data: [1500, 1800, 2000, 2200, 2500, 2700],
-                borderColor: 'rgb(99, 102, 241)',
-                backgroundColor: 'rgba(99, 102, 241, 0.2)',
-                fill: true,
-                tension: 0.4,
-            },
-        ],
-    };
 
-    const satisfactionData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [
-            {
-                label: 'Patient Satisfaction',
-                data: [7.5, 7.6, 7.8, 7.7, 8.0, 7.9],
-                borderColor: 'rgb(99, 102, 241)',
-                backgroundColor: 'rgba(99, 102, 241, 0.2)',
-                fill: true,
-                tension: 0.4,
-            },
-        ],
-    };
+    const ChartCard = ({title, children: chart, keyValue, metric, change}: {
+        title: string,
+        children: React.ReactNode,
+        keyValue: string,
+        metric: string,
+        change: string
+    }) => {
+        return (
+            <div className="col-span-1 gap-1 bg-white shadow p-4 rounded-lg overflow-clip">
+                <h3 className="text-left w-full text-lg font-semibold whitespace-nowrap mb-1">{title}</h3>
+                <div className={`flex flex-col lg:flex-row items-center justify-between`}>
+                    <div className="flex flex-col justify-center items-start">
+                        <p className="text-xl text-blue-900 font-bold mt-1">{keyValue}</p>
+                        <p className={`text-sm text-slate-500`}>{metric}</p>
+                        <p className={`text-xs ${change.includes('+') ? 'text-green-400' : 'text-red-400'} uppercase mt-2`}>{change}</p>
+                    </div>
+                    {chart}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="grid grid-cols-3 gap-4 mb-4">
-            <div className="col-span-1 bg-white shadow p-4 rounded-lg">
-                <h3 className="text-lg font-semibold mb-2">Foot Fall</h3>
+            <ChartCard title={"Foot Fall"} keyValue={"1.9k"} metric={"incidents"} change={"+ 10%"}>
                 <FootFallChart/>
-                <p className="text-xl font-bold mt-2">1.9k</p>
-            </div>
+            </ChartCard>
 
-            <div className="col-span-1 bg-white shadow p-4 rounded-lg">
-                <h3 className="text-lg font-semibold mb-2">Patient Satisfaction</h3>
+            <ChartCard title={"Patient Satisfaction"} keyValue={"7.8"} metric={"average review"} change={"+ 10%"}>
                 <PatientSatisfactionChart/>
-                <p className="text-xl font-bold mt-2">7.8</p>
-            </div>
+            </ChartCard>
 
-            <div className="col-span-1 bg-white shadow p-4 rounded-lg">
-                <h3 className="text-lg font-semibold mb-2">Revenue</h3>
+            <ChartCard title={"Revenue"} keyValue={"4.2m"} metric={"KES"} change={"- 10%"}>
                 <RevenueChart/>
-                <p className="text-xl font-bold mt-2">4.2m</p>
-            </div>
+            </ChartCard>
         </div>
     );
 };
