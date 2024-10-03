@@ -1,10 +1,44 @@
-const MainSidebar = () => {
+import {TbActivityHeartbeat, TbChartCandle, TbFolder, TbMessageDots} from "react-icons/tb";
+import React from "react";
 
-    const Button = ({children}: { children: React.ReactNode }) => {
+const MainSidebar = () => {
+    const [selected, setSelected] = React.useState<string | null>("/analytics");
+
+    const MenuItems = [
+        {
+            icon: <TbFolder/>,
+            label: "Dashboard",
+            link: "/dashboard"
+        },
+        {
+            icon: <TbActivityHeartbeat/>,
+            label: "Analytics",
+            link: "/analytics"
+        },
+        {
+            icon: <TbMessageDots/>,
+            label: "Messages",
+            link: "/messages"
+        },
+        {
+            icon: <TbChartCandle/>,
+            label: "Filters",
+            link: "/filters"
+        }
+    ];
+
+    const Button = ({children, link, label}: { children: React.ReactNode, link: string, label: string }) => {
         return (
             <button
-                className="w-10 h-10 flex items-center justify-center rounded-md text-white bg-gray-800 hover:bg-purple-500">
-                {children}
+                onClick={() => setSelected(link)}
+                title={label}
+                className={`w-12 h-12 flex items-center justify-center rounded-md text-${selected === link ? 'blue-900' : 'slate-900'} bg-transparent hover:bg-blue-700`}>
+                {
+                    React.cloneElement(children as React.ReactElement, {
+                        size: 32,
+                        className: `text-${selected === link ? 'blue-900' : 'slate-900'} font-normal`
+                    })
+                }
             </button>
         );
     }
@@ -12,10 +46,11 @@ const MainSidebar = () => {
     return (
         <div className="w-16 h-screen bg-white shadow-lg flex flex-col items-center justify-center py-4 space-y-4">
             {/* Sidebar icons */}
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
+            {MenuItems.map((item, index) => (
+                <Button key={index} link={item.link} label={item.label}>
+                    {item.icon}
+                </Button>
+            ))}
         </div>
     );
 };
