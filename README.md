@@ -76,7 +76,7 @@ metrics, incidents, staff performance, and trends over time.
 This project uses GraphQL Code Generator to generate TypeScript types from the GraphQL schema. To regenerate the types:
 
 ```bash
-  npx run generate
+  npm run generate
 ```
 
 ## Contributing
