@@ -9,7 +9,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
             <MainSidebar/>
 
             {/* Main content area */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col h-screen overflow-y-auto">
                 {/* Top Navigation */}
                 <TopNav/>
 
