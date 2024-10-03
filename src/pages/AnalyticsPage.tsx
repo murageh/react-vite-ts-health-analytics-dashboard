@@ -2,6 +2,7 @@ import BasicFilters from '../components/BasicFilters.tsx';
 import MetricsPanel from '../components/MetricsPanel';
 import AnalyticsSidebar from "../layouts/AnalyticsSidebar.tsx";
 import DateFilters from "../components/DateFilters.tsx";
+import StaffTable from "../components/charts/StaffTable.tsx";
 
 const AnalyticsPage = () => {
     return (
@@ -19,6 +20,7 @@ const AnalyticsPage = () => {
                     <BasicFilters/>
                     <DateFilters/>
                     <MetricsPanel/>
+                    <StaffTable/>
                 </div>
             </div>
         </div>
