@@ -13,7 +13,7 @@ const TopNav = () => {
     }
 
     return (
-        <div className="flex justify-between items-center bg-white p-6 shadow-md h-16">
+        <div className="sticky top-0 flex justify-between items-center bg-white p-6 shadow-md h-16">
             {/* User Info */}
             <div className="flex items-center space-x-4">
                 <NavButton
