@@ -54,7 +54,7 @@ const StaffTable: React.FC = () => {
         );
     }
 
-    const mostIssues = data.staffMembers.reduce((acc: StaffMember, staffMember: StaffMember) => {
+    const mostIssues = !data ? 0 : data.staffMembers.reduce((acc: StaffMember, staffMember: StaffMember) => {
             return staffMember.reportedIssues > acc.reportedIssues ? staffMember : acc;
         }, {reportedIssues: 0} as StaffMember
     ).reportedIssues;

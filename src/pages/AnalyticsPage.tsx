@@ -44,7 +44,7 @@ const AnalyticsPage = () => {
                             </p>
                         ) : <></>
                     }
-                    <BasicFilters keyMetrics={data.keyMetrics}/>
+                    <BasicFilters keyMetrics={data?.keyMetrics || []}/>
                     <DateFilters/>
                     <MetricsPanel/>
                     <StaffTable/>
