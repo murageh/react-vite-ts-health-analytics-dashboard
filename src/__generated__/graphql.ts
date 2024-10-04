@@ -103,6 +103,7 @@ export type Query = {
 
 export type QueryFootFallDataArgs = {
     endDate?: InputMaybe<Scalars['String']['input']>;
+    incidentType?: InputMaybe<Scalars['String']['input']>;
     period?: InputMaybe<Scalars['String']['input']>;
     startDate?: InputMaybe<Scalars['String']['input']>;
 };
@@ -117,6 +118,7 @@ export type QueryIncidentsArgs = {
 
 export type QueryPatientSatisfactionDataArgs = {
     endDate?: InputMaybe<Scalars['String']['input']>;
+    incidentType?: InputMaybe<Scalars['String']['input']>;
     period?: InputMaybe<Scalars['String']['input']>;
     startDate?: InputMaybe<Scalars['String']['input']>;
 };
@@ -124,6 +126,7 @@ export type QueryPatientSatisfactionDataArgs = {
 
 export type QueryRevenueDataArgs = {
     endDate?: InputMaybe<Scalars['String']['input']>;
+    incidentType?: InputMaybe<Scalars['String']['input']>;
     period?: InputMaybe<Scalars['String']['input']>;
     startDate?: InputMaybe<Scalars['String']['input']>;
 };
