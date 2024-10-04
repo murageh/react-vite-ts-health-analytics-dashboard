@@ -38,7 +38,7 @@ const RevenueChart: React.FC = () => {
     const {labels, data: revenueData, aggregate} = data.revenueData;
 
     return (
-        <ChartCard title={"Foot Fall"} keyValue={aggregate.sum} metric={"incidents"} change={aggregate.delta}>
+        <ChartCard title={"Revenue"} keyValue={aggregate.sum} metric={"shillings"} change={aggregate.delta}>
             <div className="mt-6">
                 <LineChart title="Revenue" labels={labels} data={revenueData}/>
             </div>

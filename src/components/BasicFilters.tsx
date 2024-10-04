@@ -7,7 +7,7 @@ const BasicFilters = ({keyMetrics}: { keyMetrics: { [key: string]: number } }) =
     const incidentTypes = Object.keys(keyMetrics).filter(x => x != '__typename').map((key) => key.replace(/_/g, " "));
 
     const handleFilterChange = (incidentType: string) => {
-        toast.success(`Filtering by ${incidentType}`);
+        toast.success(`Selected ${incidentType}`);
         setFilters({...filters, incidentType}); // Update the incidentType in the filter context
     };
 

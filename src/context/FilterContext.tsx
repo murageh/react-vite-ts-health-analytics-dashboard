@@ -12,7 +12,7 @@ interface FilterState {
 const initialFilterState: FilterState = {
     startDate: null,
     endDate: null,
-    period: 'month',
+    period: '5yrs',
     incidentType: null,
 };
 

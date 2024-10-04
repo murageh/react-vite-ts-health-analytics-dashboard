@@ -37,7 +37,8 @@ const PatientSatisfactionChart: React.FC = () => {
     const {labels, data: patientSatisfactionData, aggregate} = data.patientSatisfactionData;
 
     return (
-        <ChartCard title={"Foot Fall"} keyValue={aggregate.sum} metric={"incidents"} change={aggregate.delta}>
+        <ChartCard title={"Patient Satisfaction"} keyValue={aggregate.avg} metric={"avg. value"}
+                   change={aggregate.delta}>
             <div className="mt-6">
                 <LineChart title="Patient Satisfaction" labels={labels} data={patientSatisfactionData}/>
             </div>
