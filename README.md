@@ -4,6 +4,10 @@ This project is a React-based health analytics dashboard designed for Access Afy
 delivering quality, affordable primary care in urbanizing areas. The dashboard provides insights into key operational
 metrics, incidents, staff performance, and trends over time.
 
+> **Note:** This project is part of the Access Afya Health Analytics Dashboard (Proof of Concept), which is a full-stack
+> web application that provides insights into key metrics and performance indicators for Access Afya health facilities.
+> The backend code for the dashboard example is available [here](https://github.com/murageh/express-graphql-ts-server).
+
 ## Features
 
 * **Key Metrics:** Displays important operational metrics at a glance.
@@ -34,7 +38,7 @@ metrics, incidents, staff performance, and trends over time.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/murageh/react-vite-ts-health-analytics-dashboard
+   git clone https://github.com/murageh/react-vite-ts-health-analytics-dashboard.git
     cd react-vite-ts-health-analytics-dashboard
     ```
 2. Install dependencies:
