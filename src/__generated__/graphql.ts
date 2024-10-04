@@ -17,8 +17,19 @@ export type Scalars = {
     Float: { input: number; output: number; }
 };
 
+export type Aggregate = {
+    __typename?: 'Aggregate';
+    avg: Scalars['Float']['output'];
+    count: Scalars['Int']['output'];
+    delta: Scalars['Float']['output'];
+    max: Scalars['Float']['output'];
+    min: Scalars['Float']['output'];
+    sum: Scalars['Float']['output'];
+};
+
 export type FilteredData = {
     __typename?: 'FilteredData';
+    aggregate: Aggregate;
     data: Array<Scalars['Float']['output']>;
     labels: Array<Scalars['String']['output']>;
 };
@@ -149,7 +160,20 @@ export type FootFallDataQueryVariables = Exact<{
 
 export type FootFallDataQuery = {
     __typename?: 'Query',
-    footFallData: { __typename?: 'FilteredData', labels: Array<string>, data: Array<number> }
+    footFallData: {
+        __typename?: 'FilteredData',
+        labels: Array<string>,
+        data: Array<number>,
+        aggregate: {
+            __typename?: 'Aggregate',
+            sum: number,
+            avg: number,
+            min: number,
+            max: number,
+            count: number,
+            delta: number
+        }
+    }
 };
 
 export type PatientSatisfactionDataQueryVariables = Exact<{
@@ -161,7 +185,20 @@ export type PatientSatisfactionDataQueryVariables = Exact<{
 
 export type PatientSatisfactionDataQuery = {
     __typename?: 'Query',
-    patientSatisfactionData: { __typename?: 'FilteredData', labels: Array<string>, data: Array<number> }
+    patientSatisfactionData: {
+        __typename?: 'FilteredData',
+        labels: Array<string>,
+        data: Array<number>,
+        aggregate: {
+            __typename?: 'Aggregate',
+            sum: number,
+            avg: number,
+            min: number,
+            max: number,
+            count: number,
+            delta: number
+        }
+    }
 };
 
 export type RevenueQueryVariables = Exact<{
@@ -173,7 +210,20 @@ export type RevenueQueryVariables = Exact<{
 
 export type RevenueQuery = {
     __typename?: 'Query',
-    revenueData: { __typename?: 'FilteredData', labels: Array<string>, data: Array<number> }
+    revenueData: {
+        __typename?: 'FilteredData',
+        labels: Array<string>,
+        data: Array<number>,
+        aggregate: {
+            __typename?: 'Aggregate',
+            sum: number,
+            avg: number,
+            min: number,
+            max: number,
+            count: number,
+            delta: number
+        }
+    }
 };
 
 export type StaffMembersQueryVariables = Exact<{ [key: string]: never; }>;
@@ -238,8 +288,7 @@ export const FootFallDataDocument = {
             "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
         }],
         "selectionSet": {
-            "kind": "SelectionSet",
-            "selections": [{
+            "kind": "SelectionSet", "selections": [{
                 "kind": "Field",
                 "name": {"kind": "Name", "value": "footFallData"},
                 "arguments": [{
@@ -260,6 +309,22 @@ export const FootFallDataDocument = {
                     "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "labels"}}, {
                         "kind": "Field",
                         "name": {"kind": "Name", "value": "data"}
+                    }, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "aggregate"},
+                        "selectionSet": {
+                            "kind": "SelectionSet",
+                            "selections": [{
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "sum"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "avg"}}, {
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "min"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "max"}}, {
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "count"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "delta"}}]
+                        }
                     }]
                 }
             }]
@@ -285,8 +350,7 @@ export const PatientSatisfactionDataDocument = {
             "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
         }],
         "selectionSet": {
-            "kind": "SelectionSet",
-            "selections": [{
+            "kind": "SelectionSet", "selections": [{
                 "kind": "Field",
                 "name": {"kind": "Name", "value": "patientSatisfactionData"},
                 "arguments": [{
@@ -307,6 +371,22 @@ export const PatientSatisfactionDataDocument = {
                     "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "labels"}}, {
                         "kind": "Field",
                         "name": {"kind": "Name", "value": "data"}
+                    }, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "aggregate"},
+                        "selectionSet": {
+                            "kind": "SelectionSet",
+                            "selections": [{
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "sum"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "avg"}}, {
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "min"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "max"}}, {
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "count"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "delta"}}]
+                        }
                     }]
                 }
             }]
@@ -332,8 +412,7 @@ export const RevenueDocument = {
             "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
         }],
         "selectionSet": {
-            "kind": "SelectionSet",
-            "selections": [{
+            "kind": "SelectionSet", "selections": [{
                 "kind": "Field",
                 "name": {"kind": "Name", "value": "revenueData"},
                 "arguments": [{
@@ -354,6 +433,22 @@ export const RevenueDocument = {
                     "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "labels"}}, {
                         "kind": "Field",
                         "name": {"kind": "Name", "value": "data"}
+                    }, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "aggregate"},
+                        "selectionSet": {
+                            "kind": "SelectionSet",
+                            "selections": [{
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "sum"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "avg"}}, {
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "min"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "max"}}, {
+                                "kind": "Field",
+                                "name": {"kind": "Name", "value": "count"}
+                            }, {"kind": "Field", "name": {"kind": "Name", "value": "delta"}}]
+                        }
                     }]
                 }
             }]

@@ -3,12 +3,21 @@ import {gql, useQuery} from '@apollo/client';
 import LineChart from './LineChart';
 import React from "react";
 import {useFilterContext} from "../../context/FilterContext.tsx";
+import ChartCard from "./ChartCard.tsx";
 
 const REVENUE_QUERY = gql(`
   query Revenue($startDate: String, $endDate: String, $period: String) {
     revenueData(startDate: $startDate, endDate: $endDate, period: $period) {
       labels
       data
+      aggregate {
+                sum
+                avg
+                min
+                max
+                count
+                delta
+            }
     }
   }
 `);
@@ -26,12 +35,14 @@ const RevenueChart: React.FC = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const {labels, data: revenueData} = data.revenueData;
+    const {labels, data: revenueData, aggregate} = data.revenueData;
 
     return (
-        <div className="mt-6">
-            <LineChart title="Revenue" labels={labels} data={revenueData}/>
-        </div>
+        <ChartCard title={"Foot Fall"} keyValue={aggregate.sum} metric={"incidents"} change={aggregate.delta}>
+            <div className="mt-6">
+                <LineChart title="Revenue" labels={labels} data={revenueData}/>
+            </div>
+        </ChartCard>
     );
 };
 

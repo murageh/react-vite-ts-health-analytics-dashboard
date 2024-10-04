@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 
-export type Period = 'day' | 'week' | 'month' | 'year'; // Define a type for the period
+export type Period = 'day' | 'week' | 'month' | 'year' | '5yrs'; // Define a type for the period
 
 interface FilterState {
     startDate: string | null;
