@@ -42,7 +42,6 @@ const StaffTable: React.FC = () => {
 
     const EfficiencyMeter = ({efficiency}: { efficiency: number }) => {
         // A horizontal bar with a width of efficiency% and a faint gray border
-        console.log(efficiency);
         return (
             <div
                 className={`mx-2 flex-grow h-2 bg-gray-100 rounded-md border border-gray-200`}

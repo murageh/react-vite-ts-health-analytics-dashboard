@@ -23,7 +23,6 @@ const FOOT_FALL_QUERY = gql(`
 
 const FootFallChart: React.FC = () => {
     const {filters} = useFilterContext(); // Access filters from context
-    console.log({filters});
 
     const {loading, error, data} = useQuery(FOOT_FALL_QUERY, {
         variables: {

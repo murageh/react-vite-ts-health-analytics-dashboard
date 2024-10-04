@@ -7,8 +7,12 @@ import ReactDOM from 'react-dom/client'
 // React Toastify
 import 'react-toastify/dist/ReactToastify.css';
 
+// Use .env values for endpoint
+const endpointURL = import.meta.env.VITE_APP_GRAPHQL_URL || 'http://localhost:4000/';
+
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/', // You can replace this with your GraphQL API URL
+
+    uri: endpointURL, // You can replace this with your GraphQL API URL
         cache: new InMemoryCache()
     });
 
