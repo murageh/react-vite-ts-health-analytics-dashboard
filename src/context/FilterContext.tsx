@@ -1,17 +1,19 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 
-type Period = 'day' | 'week' | 'month'; // Define a type for the period
+export type Period = 'day' | 'week' | 'month' | 'year'; // Define a type for the period
 
 interface FilterState {
     startDate: string | null;
     endDate: string | null;
     period: Period; // Use the Period type
+    incidentType: string | null;
 }
 
 const initialFilterState: FilterState = {
     startDate: null,
     endDate: null,
     period: 'month',
+    incidentType: null,
 };
 
 const FilterContext = createContext<{

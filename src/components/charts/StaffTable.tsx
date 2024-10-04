@@ -56,8 +56,9 @@ const StaffTable: React.FC = () => {
     }
 
     const mostIssues = data.staffMembers.reduce((acc: StaffMember, staffMember: StaffMember) => {
-        return staffMember.reportedIssues > acc.reportedIssues ? staffMember : acc;
-    }).reportedIssues;
+            return staffMember.reportedIssues > acc.reportedIssues ? staffMember : acc;
+        }, {reportedIssues: 0} as StaffMember
+    ).reportedIssues;
 
     const ReportedIncidentMeter = ({reportedIssues}: { reportedIssues: number }) => {
         // uses the most reported issues to set the width of the bar, then sets the width of the bar to reportedIssues/mostIssues * 100%

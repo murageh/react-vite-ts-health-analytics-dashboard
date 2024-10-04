@@ -1,24 +1,35 @@
 import {gql, useQuery} from '@apollo/client';
 import LineChart from './LineChart';
 import React from "react";
+import {useFilterContext} from "../../context/FilterContext.tsx";
 
 const PATIENT_SATISFACTION_QUERY = gql(`
-    query PatientSatisfactionData {
-        patientSatisfactionData
+    query PatientSatisfactionData($startDate: String, $endDate: String, $period: String) {
+        patientSatisfactionData(startDate: $startDate, endDate: $endDate, period: $period) {
+            labels
+            data
+        }
     }
 `);
 
 const PatientSatisfactionChart: React.FC = () => {
-    const {loading, error, data} = useQuery(PATIENT_SATISFACTION_QUERY);
+    const {filters} = useFilterContext();
+    const {loading, error, data} = useQuery(PATIENT_SATISFACTION_QUERY, {
+        variables: {
+            startDate: filters.startDate,
+            endDate: filters.endDate,
+            period: filters.period,
+        },
+    });
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    // Assuming you have labels for the patient satisfaction data
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const {labels, data: patientSatisfactionData} = data.patientSatisfactionData;
+
     return (
         <div className="mt-6">
-            <LineChart title="Patient Satisfaction" labels={labels} data={data.patientSatisfactionData}/>
+            <LineChart title="Patient Satisfaction" labels={labels} data={patientSatisfactionData}/>
         </div>
     );
 };

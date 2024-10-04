@@ -17,6 +17,12 @@ export type Scalars = {
     Float: { input: number; output: number; }
 };
 
+export type FilteredData = {
+    __typename?: 'FilteredData';
+    data: Array<Scalars['Float']['output']>;
+    labels: Array<Scalars['String']['output']>;
+};
+
 export type FootFall = {
     __typename?: 'FootFall';
     date: Scalars['String']['output'];
@@ -30,6 +36,18 @@ export type Incident = {
     id: Scalars['ID']['output'];
     incidentType: Scalars['String']['output'];
     patientName: Scalars['String']['output'];
+};
+
+export type KeyMetrics = {
+    __typename?: 'KeyMetrics';
+    Bad_Reception_Count: Scalars['Int']['output'];
+    Careless_Notes_Count: Scalars['Int']['output'];
+    Late_CheckIn_Count: Scalars['Int']['output'];
+    Opened_Late_Count: Scalars['Int']['output'];
+    Wrong_Diagnosis_Count: Scalars['Int']['output'];
+    Wrong_Prescription_Count: Scalars['Int']['output'];
+    Wrong_Surgery_Count: Scalars['Int']['output'];
+    Wrong_Treatment_Count: Scalars['Int']['output'];
 };
 
 export type Mutation = {
@@ -63,12 +81,46 @@ export type PatientSatisfaction = {
 
 export type Query = {
     __typename?: 'Query';
-    footFallData: Array<Scalars['Float']['output']>;
+    footFallData: FilteredData;
     incidents: Array<Incident>;
-    keyMetrics: Array<Scalars['Int']['output']>;
-    patientSatisfactionData: Array<Scalars['Float']['output']>;
-    revenueData: Array<Scalars['Float']['output']>;
+    keyMetrics: KeyMetrics;
+    patientSatisfactionData: FilteredData;
+    revenueData: FilteredData;
     staffMembers: Array<StaffMember>;
+};
+
+
+export type QueryFootFallDataArgs = {
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    period?: InputMaybe<Scalars['String']['input']>;
+    startDate?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryIncidentsArgs = {
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    incidentType?: InputMaybe<Scalars['String']['input']>;
+    startDate?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPatientSatisfactionDataArgs = {
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    period?: InputMaybe<Scalars['String']['input']>;
+    startDate?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryRevenueDataArgs = {
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    period?: InputMaybe<Scalars['String']['input']>;
+    startDate?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryStaffMembersArgs = {
+    sortBy?: InputMaybe<Scalars['String']['input']>;
+    sortOrder?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Revenue = {
@@ -88,28 +140,41 @@ export type StaffMember = {
     reportedIssues: Scalars['Int']['output'];
 };
 
-export type IncidentsQueryVariables = Exact<{ [key: string]: never; }>;
+export type FootFallDataQueryVariables = Exact<{
+    startDate?: InputMaybe<Scalars['String']['input']>;
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    period?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
-export type IncidentsQuery = {
+export type FootFallDataQuery = {
     __typename?: 'Query',
-    incidents: Array<{ __typename?: 'Incident', id: string, patientName: string, incidentType: string, date: string }>
+    footFallData: { __typename?: 'FilteredData', labels: Array<string>, data: Array<number> }
 };
 
-export type FootFallQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type PatientSatisfactionDataQueryVariables = Exact<{
+    startDate?: InputMaybe<Scalars['String']['input']>;
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    period?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
-export type FootFallQueryQuery = { __typename?: 'Query', footFallData: Array<number> };
+export type PatientSatisfactionDataQuery = {
+    __typename?: 'Query',
+    patientSatisfactionData: { __typename?: 'FilteredData', labels: Array<string>, data: Array<number> }
+};
 
-export type PatientSatisfactionDataQueryVariables = Exact<{ [key: string]: never; }>;
+export type RevenueQueryVariables = Exact<{
+    startDate?: InputMaybe<Scalars['String']['input']>;
+    endDate?: InputMaybe<Scalars['String']['input']>;
+    period?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
-export type PatientSatisfactionDataQuery = { __typename?: 'Query', patientSatisfactionData: Array<number> };
-
-export type RevenueQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type RevenueQuery = { __typename?: 'Query', revenueData: Array<number> };
+export type RevenueQuery = {
+    __typename?: 'Query',
+    revenueData: { __typename?: 'FilteredData', labels: Array<string>, data: Array<number> }
+};
 
 export type StaffMembersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -127,65 +192,171 @@ export type StaffMembersQuery = {
     }>
 };
 
+export type IncidentsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const IncidentsDocument = {
-    "kind": "Document",
-    "definitions": [{
+
+export type IncidentsQuery = {
+    __typename?: 'Query',
+    incidents: Array<{ __typename?: 'Incident', id: string, patientName: string, incidentType: string, date: string }>
+};
+
+export type KeyMetricsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type KeyMetricsQuery = {
+    __typename?: 'Query',
+    keyMetrics: {
+        __typename?: 'KeyMetrics',
+        Wrong_Prescription_Count: number,
+        Opened_Late_Count: number,
+        Wrong_Diagnosis_Count: number,
+        Wrong_Treatment_Count: number,
+        Wrong_Surgery_Count: number,
+        Late_CheckIn_Count: number,
+        Careless_Notes_Count: number,
+        Bad_Reception_Count: number
+    }
+};
+
+
+export const FootFallDataDocument = {
+    "kind": "Document", "definitions": [{
         "kind": "OperationDefinition",
         "operation": "query",
-        "name": {"kind": "Name", "value": "Incidents"},
+        "name": {"kind": "Name", "value": "FootFallData"},
+        "variableDefinitions": [{
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "startDate"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }, {
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "endDate"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }, {
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "period"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }],
         "selectionSet": {
             "kind": "SelectionSet",
             "selections": [{
                 "kind": "Field",
-                "name": {"kind": "Name", "value": "incidents"},
+                "name": {"kind": "Name", "value": "footFallData"},
+                "arguments": [{
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "startDate"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "startDate"}}
+                }, {
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "endDate"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "endDate"}}
+                }, {
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "period"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "period"}}
+                }],
                 "selectionSet": {
                     "kind": "SelectionSet",
-                    "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "id"}}, {
+                    "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "labels"}}, {
                         "kind": "Field",
-                        "name": {"kind": "Name", "value": "patientName"}
-                    }, {"kind": "Field", "name": {"kind": "Name", "value": "incidentType"}}, {
-                        "kind": "Field",
-                        "name": {"kind": "Name", "value": "date"}
+                        "name": {"kind": "Name", "value": "data"}
                     }]
                 }
             }]
         }
     }]
-} as unknown as DocumentNode<IncidentsQuery, IncidentsQueryVariables>;
-export const FootFallQueryDocument = {
-    "kind": "Document",
-    "definitions": [{
-        "kind": "OperationDefinition",
-        "operation": "query",
-        "name": {"kind": "Name", "value": "FootFallQuery"},
-        "selectionSet": {
-            "kind": "SelectionSet",
-            "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "footFallData"}}]
-        }
-    }]
-} as unknown as DocumentNode<FootFallQueryQuery, FootFallQueryQueryVariables>;
+} as unknown as DocumentNode<FootFallDataQuery, FootFallDataQueryVariables>;
 export const PatientSatisfactionDataDocument = {
-    "kind": "Document",
-    "definitions": [{
+    "kind": "Document", "definitions": [{
         "kind": "OperationDefinition",
         "operation": "query",
         "name": {"kind": "Name", "value": "PatientSatisfactionData"},
+        "variableDefinitions": [{
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "startDate"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }, {
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "endDate"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }, {
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "period"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }],
         "selectionSet": {
             "kind": "SelectionSet",
-            "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "patientSatisfactionData"}}]
+            "selections": [{
+                "kind": "Field",
+                "name": {"kind": "Name", "value": "patientSatisfactionData"},
+                "arguments": [{
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "startDate"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "startDate"}}
+                }, {
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "endDate"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "endDate"}}
+                }, {
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "period"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "period"}}
+                }],
+                "selectionSet": {
+                    "kind": "SelectionSet",
+                    "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "labels"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "data"}
+                    }]
+                }
+            }]
         }
     }]
 } as unknown as DocumentNode<PatientSatisfactionDataQuery, PatientSatisfactionDataQueryVariables>;
 export const RevenueDocument = {
-    "kind": "Document",
-    "definitions": [{
+    "kind": "Document", "definitions": [{
         "kind": "OperationDefinition",
         "operation": "query",
         "name": {"kind": "Name", "value": "Revenue"},
+        "variableDefinitions": [{
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "startDate"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }, {
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "endDate"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }, {
+            "kind": "VariableDefinition",
+            "variable": {"kind": "Variable", "name": {"kind": "Name", "value": "period"}},
+            "type": {"kind": "NamedType", "name": {"kind": "Name", "value": "String"}}
+        }],
         "selectionSet": {
             "kind": "SelectionSet",
-            "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "revenueData"}}]
+            "selections": [{
+                "kind": "Field",
+                "name": {"kind": "Name", "value": "revenueData"},
+                "arguments": [{
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "startDate"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "startDate"}}
+                }, {
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "endDate"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "endDate"}}
+                }, {
+                    "kind": "Argument",
+                    "name": {"kind": "Name", "value": "period"},
+                    "value": {"kind": "Variable", "name": {"kind": "Name", "value": "period"}}
+                }],
+                "selectionSet": {
+                    "kind": "SelectionSet",
+                    "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "labels"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "data"}
+                    }]
+                }
+            }]
         }
     }]
 } as unknown as DocumentNode<RevenueQuery, RevenueQueryVariables>;
@@ -217,3 +388,59 @@ export const StaffMembersDocument = {
         }
     }]
 } as unknown as DocumentNode<StaffMembersQuery, StaffMembersQueryVariables>;
+export const IncidentsDocument = {
+    "kind": "Document",
+    "definitions": [{
+        "kind": "OperationDefinition",
+        "operation": "query",
+        "name": {"kind": "Name", "value": "Incidents"},
+        "selectionSet": {
+            "kind": "SelectionSet",
+            "selections": [{
+                "kind": "Field",
+                "name": {"kind": "Name", "value": "incidents"},
+                "selectionSet": {
+                    "kind": "SelectionSet",
+                    "selections": [{"kind": "Field", "name": {"kind": "Name", "value": "id"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "patientName"}
+                    }, {"kind": "Field", "name": {"kind": "Name", "value": "incidentType"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "date"}
+                    }]
+                }
+            }]
+        }
+    }]
+} as unknown as DocumentNode<IncidentsQuery, IncidentsQueryVariables>;
+export const KeyMetricsDocument = {
+    "kind": "Document",
+    "definitions": [{
+        "kind": "OperationDefinition",
+        "operation": "query",
+        "name": {"kind": "Name", "value": "KeyMetrics"},
+        "selectionSet": {
+            "kind": "SelectionSet",
+            "selections": [{
+                "kind": "Field",
+                "name": {"kind": "Name", "value": "keyMetrics"},
+                "selectionSet": {
+                    "kind": "SelectionSet",
+                    "selections": [{
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "Wrong_Prescription_Count"}
+                    }, {"kind": "Field", "name": {"kind": "Name", "value": "Opened_Late_Count"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "Wrong_Diagnosis_Count"}
+                    }, {"kind": "Field", "name": {"kind": "Name", "value": "Wrong_Treatment_Count"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "Wrong_Surgery_Count"}
+                    }, {"kind": "Field", "name": {"kind": "Name", "value": "Late_CheckIn_Count"}}, {
+                        "kind": "Field",
+                        "name": {"kind": "Name", "value": "Careless_Notes_Count"}
+                    }, {"kind": "Field", "name": {"kind": "Name", "value": "Bad_Reception_Count"}}]
+                }
+            }]
+        }
+    }]
+} as unknown as DocumentNode<KeyMetricsQuery, KeyMetricsQueryVariables>;
