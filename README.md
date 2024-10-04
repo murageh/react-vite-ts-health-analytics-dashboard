@@ -14,9 +14,9 @@ metrics, incidents, staff performance, and trends over time.
 * **Incident List:** Shows a list of reported incidents with patient details and incident type.
 * **Line Charts:** Visualizes trends for footfall, patient satisfaction, and revenue.
 * **Staff Performance Table:** Presents a table of staff members with their efficiency, NPS, and reported issues.
-* **Light/Dark Mode Toggle:** Allows users to switch between light and dark themes.
+* **Light/Dark Mode Toggle:** Allows users to switch between light and dark themes. (Currently disabled)
 * **Filtering and Sorting:** Enables users to filter and sort data in the incident list and staff table.
-* **Responsive Design:** Adapts to various screen sizes for optimal viewing.
+* **Responsive Design:** Adapts to various screen sizes for optimal viewing. (Optimized for medium-large screens)
 
 ## Technologies Used
 
